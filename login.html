@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Trendify – Connexion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Icônes Google (optionnel, pour les champs) -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="login_style.css">
+</head>
+<body>
+
+<div class="auth-page">
+
+    <!-- Logo + nom -->
+    <header class="auth-header">
+        <div class="logo-mark">T</div>
+        <div class="logo-text">Trendify</div>
+    </header>
+
+    <!-- Carte de connexion -->
+    <main class="auth-card">
+        <h1>Connexion</h1>
+        <p class="auth-subtitle">Ravi de te revoir. Connecte-toi pour continuer.</p>
+
+        <form class="auth-form" autocomplete="off">
+            <!-- Email -->
+            <div class="field">
+                <label for="email">Adresse e-mail</label>
+                <div class="field-input">
+                    <span class="material-symbols-rounded">mail</span>
+                    <input type="email" id="email" placeholder="tonmail@example.com" required>
+                </div>
+            </div>
+
+            <!-- Mot de passe -->
+            <div class="field">
+                <label for="password">Mot de passe</label>
+                <div class="field-input">
+                    <span class="material-symbols-rounded">lock</span>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+            </div>
+
+            <!-- Options -->
+            <div class="auth-options">
+                <label class="remember">
+                    <input type="checkbox" id="remember">
+                    <span>Se souvenir de moi</span>
+                </label>
+                <a href="#" class="forgot-link">Mot de passe oublié ?</a>
+            </div>
+
+            <!-- Bouton de connexion -->
+            <button type="submit" class="auth-btn">Se connecter</button>
+
+            <!-- Ligne ou -->
+            <div class="auth-divider">
+                <span></span>
+                <p>ou</p>
+                <span></span>
+            </div>
+
+            <!-- Bouton Google (juste design front) -->
+            <button type="button" class="auth-btn secondary">
+                <span class="material-symbols-rounded">account_circle</span>
+                Continuer avec Google
+            </button>
+
+            <!-- Lien inscription -->
+            <p class="auth-footer-text">
+                Pas encore de compte ?
+                <a href="#">Créer un compte</a>
+            </p>
+        </form>
+    </main>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,326 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: #050509; /* fond sombre global */
+    color: #ffffff;
+}
+
+/* TOP BAR (logo Trendify) */
+.topbar {
+    width: 100%;
+    padding: 16px 22px;
+    background: #050509;
+    border-bottom: 1px solid #1a1a1d;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    height: 70px;               /* utilisé pour la sidebar */
+    display: flex;
+    align-items: center;
+}
+
+/* BOUTON SE CONNECTER DANS LA TOPBAR */
+.login-btn {
+    margin-left: auto;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ff4b6e, #ffb347);
+    color: #000;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    box-shadow:
+        0 4px 14px rgba(255, 75, 110, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.15);
+    transition: 0.2s ease;
+}
+
+.login-btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
+
+.login-btn:active {
+    transform: translateY(0);
+    opacity: 0.85;
+}
+
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #ff4b6e, #ffb347);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* LAYOUT GLOBAL */
+.app {
+    display: flex;
+    padding: 24px;
+    gap: 40px;
+}
+
+/* SIDEBAR GAUCHE – ICÔNES DE THREADS */
+.sidebar {
+    width: 70px;
+    height: calc(100vh - 70px); /* toute la hauteur sous la topbar */
+    position: sticky;
+    top: 70px;                  /* commence juste sous la topbar */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    /* centre verticalement les icônes */
+    align-items: center;
+}
+
+.nav-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* MATÉRIEL ICONS (GOOGLE FONTS) */
+.material-symbols-rounded {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    font-size: 26px;
+    line-height: 1;
+}
+
+/* BOUTONS ICÔNES */
+.icon-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #9ca3af;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; 
+    color: inherit;
+}
+
+.icon-btn:hover {
+    background: #18181f;
+    color: #ffffff;
+}
+
+.icon-btn.active {
+    background: #ffffff;
+    color: #000000;
+}
+
+/* Icône remplie pour l'élément actif */
+.icon-btn.active .material-symbols-rounded {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 500,
+        'GRAD' 0,
+        'opsz' 24;
+}
+
+/* FEED CENTRAL */
+.feed {
+    flex: 1;
+    max-width: 620px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.feed-header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #f9fafb;
+    text-align: center;
+}
+
+/* CARTES GÉNÉRIQUES */
+.card {
+    background: #11121a;
+    border-radius: 16px;
+    padding: 16px;
+    border: 1px solid #1e1e25;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+
+/* COMPOSER */
+.composer {
+    display: flex;
+    gap: 12px;
+}
+
+.avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    background: #1f2933;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    color: #e5e7eb;
+}
+
+.composer-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.composer textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    resize: none;
+    outline: none;
+    padding-top: 4px;
+    color: #f9fafb;
+    font-size: 15px;
+}
+
+.composer textarea::placeholder {
+    color: #6b7280;
+}
+
+.composer-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.composer-actions button {
+    background: linear-gradient(135deg, #ff4b6e, #ffb347);
+    color: #000;
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.composer-actions button:hover {
+    opacity: 0.9;
+}
+
+/* LISTE DE POSTS */
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ENTÊTE DU POST */
+.post-header {
+    display: flex;
+    gap: 12px;
+}
+
+.post-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-user {
+    font-weight: 600;
+    font-size: 14px;
+    color: #f9fafb;
+}
+
+.post-time {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+/* CORPS DU POST */
+.post-body {
+    margin-top: 10px;
+    font-size: 15px;
+    color: #e5e7eb;
+}
+
+/* IMAGES DU POST (placeholder pour l’instant) */
+.post-images {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 6px;
+}
+
+.img-placeholder {
+    height: 120px;
+    background: #1f2933;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #9ca3af;
+    font-size: 13px;
+}
+
+/* PIED DU POST */
+.post-footer {
+    display: flex;
+    gap: 18px;
+    margin-top: 12px;
+}
+
+.action-btn {
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    transition: 0.2s;
+}
+
+.action-btn:hover {
+    color: #ffffff;
+}
+
+/* Les icônes dans les boutons de post */
+.post-footer .material-symbols-rounded {
+    font-size: 20px;
+}
+
+/* Like "actif" (si tu ajoutes la classe liked en JS) */
+.like-btn.liked .material-symbols-rounded,
+.like-btn.liked span:last-child {
+    color: #ff4b6e;
+}
+
+/* RESPONSIVE */
+@media (max-width: 720px) {
+    .app {
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .feed {
+        max-width: 100%;
+    }
+}

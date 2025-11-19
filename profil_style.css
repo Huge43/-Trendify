@@ -1,0 +1,207 @@
+/* ------------------ PAGE PROFIL ------------------ */
+
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Carte principale du profil */
+.profile-card {
+    border-radius: 22px;
+    padding: 18px 18px 14px;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+/* Infos à gauche */
+.profile-main-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.profile-name {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.profile-username {
+    font-size: 14px;
+    color: #9ca3af;
+}
+
+.profile-bio {
+    margin-top: 6px;
+    font-size: 14px;
+}
+
+/* Followers */
+.profile-follow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.profile-follow-avatars {
+    display: flex;
+}
+
+.mini-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    background: #1f2933;
+    border: 2px solid #11121a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: #e5e7eb;
+    margin-left: -6px;
+}
+
+.mini-avatar:first-child {
+    margin-left: 0;
+}
+
+.profile-follow-text {
+    font-size: 13px;
+    color: #9ca3af;
+}
+
+.profile-follow-count {
+    color: #f9fafb;
+    font-weight: 600;
+}
+
+/* Avatar principal à droite */
+.profile-avatar-wrapper {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.profile-avatar {
+    width: 74px;
+    height: 74px;
+    border-radius: 999px;
+    background: radial-gradient(circle at 30% 0, #ffffff33, transparent 55%),
+                linear-gradient(135deg, #f97316, #ec4899);
+    border: 3px solid #050509;
+}
+
+/* Ligne boutons Modifier le profil + icônes */
+.profile-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.profile-edit-btn {
+    flex: 1;
+    border-radius: 999px;
+    border: 1px solid #3f3f46;
+    background: transparent;
+    color: #f9fafb;
+    font-size: 14px;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-weight: 500;
+    text-align: center;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.profile-edit-btn:hover {
+    background: #18181f;
+    border-color: #52525b;
+}
+
+.profile-links {
+    display: flex;
+    gap: 6px;
+    color: #9ca3af;
+}
+
+.profile-links .material-symbols-rounded {
+    font-size: 20px;
+}
+
+/* Onglets */
+.profile-tabs {
+    display: flex;
+    margin-top: 14px;
+    border-radius: 999px;
+    background: #050509;
+    border: 1px solid #1f2933;
+    overflow: hidden;
+}
+
+.profile-tabs .tab {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: #9ca3af;
+    font-size: 13px;
+    padding: 8px 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+
+.profile-tabs .tab:hover {
+    background: #18181f;
+}
+
+.profile-tabs .tab.active {
+    background: #f9fafb;
+    color: #050509;
+}
+
+/* Composer sous la carte profil */
+.profile-thread-composer {
+    display: flex;
+    gap: 12px;
+}
+
+/* Liste des posts du profil */
+.profile-thread-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Ajustement des posts sur la page profil */
+.profile-thread-list .post-time {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+    .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .profile-avatar-wrapper {
+        align-self: flex-end;
+    }
+}
+
+.profile-page .feed-header {
+    text-align: center;
+    width: 100%;
+}
+
+.profile-page .feed-header h1 {
+    margin: 0 auto;
+    text-align: center;
+}
