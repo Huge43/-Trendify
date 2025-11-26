@@ -8,6 +8,9 @@ const error_message = document.getElementById('error-message');
 
 // Soumission du formulaire
 form.addEventListener('submit', (e) => {
+    // On bloque TOUJOURS le submit HTML
+    e.preventDefault();
+
     clearErrors();
 
     const errors = validateSignupForm(
@@ -18,14 +21,11 @@ form.addEventListener('submit', (e) => {
         password2Input
     );
 
-    // S'il y a des erreurs → on bloque l'envoi
     if (errors.length > 0) {
-        e.preventDefault();
         error_message.innerText = errors.join(' ');
-    } 
-    else {
-        //redirection
-        window.location.href = "index.html";
+    } else {
+        // ✅ AUCUNE ERREUR → REDIRECTION
+        window.location.href = "index.html"; // adapte le chemin si besoin
     }
 });
 
@@ -39,46 +39,55 @@ function validateSignupForm(fullname, username, email, password, password2) {
     const passwordValue = password.value.trim();
     const password2Value = password2.value.trim();
 
+    // NOM COMPLET
     if (fullnameValue === "") {
         errors.push("Vous devez entrer votre nom complet.");
         markIncorrect(fullname);
     }
 
+    // USERNAME
     if (usernameValue === "") {
         errors.push(" Vous devez entrer un nom d'utilisateur.");
         markIncorrect(username);
     }
 
+    // EMAIL OBLIGATOIRE
     if (emailValue === "") {
         errors.push(" Vous devez entrer une adresse e-mail.");
         markIncorrect(email);
     }
 
+    // EMAIL DOIT CONTENIR @
     if (emailValue !== "" && !emailValue.includes('@')) {
         errors.push(" L’adresse e-mail doit contenir '@'.");
         markIncorrect(email);
     }
 
+    // MOT DE PASSE OBLIGATOIRE
     if (passwordValue === "") {
         errors.push(" Vous devez entrer un mot de passe.");
         markIncorrect(password);
     }
 
+    // MOT DE PASSE LONGUEUR MINIMUM
     if (passwordValue !== "" && passwordValue.length < 8) {
         errors.push(" Le mot de passe doit avoir au moins 8 caractères.");
         markIncorrect(password);
     }
 
+    // MOT DE PASSE DOIT CONTENIR AU MOINS UN CHIFFRE
     if (passwordValue !== "" && !/\d/.test(passwordValue)) {
         errors.push(" Le mot de passe doit contenir au moins un chiffre.");
         markIncorrect(password);
     }
 
+    // CONFIRMATION
     if (password2Value === "") {
         errors.push(" Vous devez confirmer le mot de passe.");
         markIncorrect(password2);
     }
 
+    // MOTS DE PASSE IDENTIQUES
     if (passwordValue !== "" && password2Value !== "" && passwordValue !== password2Value) {
         errors.push(" Les mots de passe ne sont pas identiques.");
         markIncorrect(password);
@@ -92,6 +101,7 @@ function markIncorrect(input) {
     input.parentElement.classList.add('incorrect');
 }
 
+// enlever les erreurs quand l'utilisateur retape
 const allInputs = [fullnameInput, usernameInput, emailInput, passwordInput, password2Input];
 
 allInputs.forEach(input => {

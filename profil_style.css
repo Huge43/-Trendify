@@ -1,12 +1,167 @@
-/* ------------------ PAGE PROFIL ------------------ */
+/* ============ RESET ============ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-.profile-page {
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: #050509;
+    color: #ffffff;
+}
+
+/* ============ TOPBAR ============ */
+.topbar {
+    width: 100%;
+    padding: 16px 22px;
+    background: #050509;
+    border-bottom: 1px solid #1a1a1d;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #ff4b6e, #ffb347);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.login-btn {
+    margin-left: auto;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ff4b6e, #ffb347);
+    color: #000;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    box-shadow:
+        0 4px 14px rgba(255, 75, 110, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.15);
+    transition: 0.2s ease;
+}
+
+.login-btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+}
+
+/* ============ LAYOUT GENERAL ============ */
+
+.app {
+    display: flex;
+    padding: 24px;
+    gap: 40px;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 70px;
+    height: calc(100vh - 70px);
+    position: sticky;
+    top: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-icons {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* Icônes Google */
+.material-symbols-rounded {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
+    font-size: 24px;
+    line-height: 1;
+}
+
+/* Boutons icône (a ou button) */
+.icon-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #9ca3af;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.icon-btn:hover {
+    background: #18181f;
+    color: #ffffff;
+}
+
+.icon-btn.active {
+    background: #ffffff;
+    color: #000000;
+}
+
+.icon-btn.active .material-symbols-rounded {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 500,
+        'GRAD' 0,
+        'opsz' 24;
+}
+
+/* FEED / CONTENU CENTRAL */
+
+.feed {
+    flex: 1;
+    max-width: 620px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-/* Carte principale du profil */
+/* ============ HEADER PROFIL ============ */
+
+.profile-page .feed-header {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 4px;
+}
+
+.profile-page .feed-header h1 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* ============ CARTE DE BASE (CARD) ============ */
+
+.card {
+    background: #11121a;
+    border-radius: 16px;
+    padding: 16px;
+    border: 1px solid #1e1e25;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+
+/* ============ CARTE PROFIL ============ */
+
 .profile-card {
     border-radius: 22px;
     padding: 18px 18px 14px;
@@ -18,7 +173,6 @@
     gap: 16px;
 }
 
-/* Infos à gauche */
 .profile-main-info {
     display: flex;
     flex-direction: column;
@@ -35,173 +189,167 @@
     color: #9ca3af;
 }
 
-.profile-bio {
-    margin-top: 6px;
-    font-size: 14px;
-}
+/* ============ COMPOSER SUR LE PROFIL ============ */
 
-/* Followers */
-.profile-follow {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 10px;
-}
-
-.profile-follow-avatars {
-    display: flex;
-}
-
-.mini-avatar {
-    width: 22px;
-    height: 22px;
-    border-radius: 999px;
-    background: #1f2933;
-    border: 2px solid #11121a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    font-weight: 600;
-    color: #e5e7eb;
-    margin-left: -6px;
-}
-
-.mini-avatar:first-child {
-    margin-left: 0;
-}
-
-.profile-follow-text {
-    font-size: 13px;
-    color: #9ca3af;
-}
-
-.profile-follow-count {
-    color: #f9fafb;
-    font-weight: 600;
-}
-
-/* Avatar principal à droite */
-.profile-avatar-wrapper {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
-}
-
-.profile-avatar {
-    width: 74px;
-    height: 74px;
-    border-radius: 999px;
-    background: radial-gradient(circle at 30% 0, #ffffff33, transparent 55%),
-                linear-gradient(135deg, #f97316, #ec4899);
-    border: 3px solid #050509;
-}
-
-/* Ligne boutons Modifier le profil + icônes */
-.profile-actions-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 14px;
-}
-
-.profile-edit-btn {
-    flex: 1;
-    border-radius: 999px;
-    border: 1px solid #3f3f46;
-    background: transparent;
-    color: #f9fafb;
-    font-size: 14px;
-    padding: 8px 10px;
-    cursor: pointer;
-    font-weight: 500;
-    text-align: center;
-    transition: background 0.2s, border-color 0.2s;
-}
-
-.profile-edit-btn:hover {
-    background: #18181f;
-    border-color: #52525b;
-}
-
-.profile-links {
-    display: flex;
-    gap: 6px;
-    color: #9ca3af;
-}
-
-.profile-links .material-symbols-rounded {
-    font-size: 20px;
-}
-
-/* Onglets */
-.profile-tabs {
-    display: flex;
-    margin-top: 14px;
-    border-radius: 999px;
-    background: #050509;
-    border: 1px solid #1f2933;
-    overflow: hidden;
-}
-
-.profile-tabs .tab {
-    flex: 1;
-    border: none;
-    background: transparent;
-    color: #9ca3af;
-    font-size: 13px;
-    padding: 8px 6px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background 0.2s, color 0.2s;
-}
-
-.profile-tabs .tab:hover {
-    background: #18181f;
-}
-
-.profile-tabs .tab.active {
-    background: #f9fafb;
-    color: #050509;
-}
-
-/* Composer sous la carte profil */
 .profile-thread-composer {
     display: flex;
     gap: 12px;
+    align-items: flex-start;
 }
 
-/* Liste des posts du profil */
+/* L'icône avatar à gauche */
+.profile-thread-composer > .material-symbols-rounded {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background: #1f2933;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+/* Contenu du composer */
+.composer-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.composer-content textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    resize: none;
+    outline: none;
+    color: #f9fafb;
+    font-size: 15px;
+    padding-top: 4px;
+}
+
+.composer-content textarea::placeholder {
+    color: #6b7280;
+}
+
+.composer-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.composer-actions button {
+    background: linear-gradient(135deg, #ff4b6e, #ffb347);
+    color: #000;
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.composer-actions button:hover {
+    opacity: 0.9;
+}
+
+/* ============ LISTE DES THREADS ============ */
+
 .profile-thread-list {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-/* Ajustement des posts sur la page profil */
-.profile-thread-list .post-time {
+/* Post générique */
+
+.post {
+    background: #11121a;
+    border-radius: 16px;
+    padding: 14px 14px 12px;
+    border: 1px solid #1e1e25;
+}
+
+.post-header {
+    display: flex;
+    gap: 10px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background: #1f2933;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.post-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-user {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.post-time {
     font-size: 12px;
     color: #9ca3af;
+    margin-top: 2px;
 }
 
-/* Responsive */
+.post-body {
+    margin-top: 10px;
+    font-size: 15px;
+    color: #e5e7eb;
+}
+
+.post-footer {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.action-btn {
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s;
+}
+
+.action-btn .material-symbols-rounded {
+    font-size: 18px;
+}
+
+.action-btn:hover {
+    color: #ffffff;
+}
+
+.like-btn.liked {
+    color: #ff4b6e;
+}
+
+/* ============ RESPONSIVE ============ */
+
 @media (max-width: 720px) {
-    .profile-header {
-        flex-direction: column;
-        align-items: flex-start;
+    .app {
+        padding: 16px;
+        gap: 16px;
     }
 
-    .profile-avatar-wrapper {
-        align-self: flex-end;
+    .sidebar {
+        display: none;
     }
-}
 
-.profile-page .feed-header {
-    text-align: center;
-    width: 100%;
-}
-
-.profile-page .feed-header h1 {
-    margin: 0 auto;
-    text-align: center;
+    .feed {
+        max-width: 100%;
+    }
 }

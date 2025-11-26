@@ -8,17 +8,22 @@
     <!-- Icônes Google -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
 
-    <!-- CSS global -->
-    <link rel="stylesheet" href="style.css">
-
     <!-- CSS spécifique profil -->
     <link rel="stylesheet" href="profil_style.css">
+
+   
+    
+
+    <!-- Scripts (pour plus tard : auth, profile.js) -->
+    <!-- <script src="auth.js" defer></script>
+    <script src="profile.js" defer></script> -->
 </head>
 <body>
 
 <!-- TOP BAR -->
 <header class="topbar">
     <div class="logo-text">Trendify</div>
+    <!-- On pourra remplacer ce bouton par le username + logout quand on aura auth.js -->
     <a href="login.html" class="login-btn">Se connecter</a>
 </header>
 
@@ -26,101 +31,70 @@
 
     <!-- SIDEBAR -->
     <aside class="sidebar">
-    <nav class="nav-icons">
+        <nav class="nav-icons">
+            <!-- Accueil = lien simple -->
+            <a href="index.html" class="icon-btn" title="Accueil">
+                <span class="material-symbols-rounded">home</span>
+            </a>
 
-        <!-- Accueil -->
-        <a href="index.html" class="icon-btn" title="Accueil">
-            <span class="material-symbols-rounded">home</span>
-        </a>
+            <button class="icon-btn" title="Recherche">
+                <span class="material-symbols-rounded">search</span>
+            </button>
 
-        <!-- Recherche -->
-        <button class="icon-btn" title="Recherche">
-            <span class="material-symbols-rounded">search</span>
-        </button>
+            <button class="icon-btn" title="Nouveau post">
+                <span class="material-symbols-rounded">add</span>
+            </button>
 
-        <!-- Ajouter un post -->
-        <button class="icon-btn" title="Nouveau post">
-            <span class="material-symbols-rounded">add</span>
-        </button>
+            <button class="icon-btn" title="Likes">
+                <span class="material-symbols-rounded">favorite</span>
+            </button>
 
-        <!-- Likes -->
-        <button class="icon-btn" title="Likes">
-            <span class="material-symbols-rounded">favorite</span>
-        </button>
-
-        <!-- Profil -->
-        <a href="profile.html" class="icon-btn active" title="Profil">
-            <span class="material-symbols-rounded">person</span>
-        </a>
-
-    </nav>
-</aside>
-
+            <!-- Profil = actif sur cette page -->
+            <a href="profil.html" class="icon-btn active" title="Profil">
+                <span class="material-symbols-rounded">person</span>
+            </a>
+        </nav>
+    </aside>
 
     <!-- CONTENU PROFIL -->
     <main class="feed profile-page">
+
+        <!-- Titre centré -->
+        <header class="feed-header">
+            <h1>Profil</h1>
+        </header>
 
         <!-- CARTE PROFIL -->
         <section class="card profile-card">
             <div class="profile-header">
                 <div class="profile-main-info">
-                    <h1 class="profile-name">Glodie Katanga</h1>
-                    <p class="profile-username">@glodie_kta</p>
-                    <p class="profile-bio">Soyez simplement simple 🌙</p>
+                    <h1 class="profile-name">Profile name</h1>
+                    <p class="profile-username">@user_name</p>
+                    
 
-                    <div class="profile-follow">
-                        <div class="profile-follow-avatars">
-                            <div class="mini-avatar">G</div>
-                            <div class="mini-avatar">E</div>
-                            <div class="mini-avatar">R</div>
-                        </div>
-                        <p class="profile-follow-text">
-                            <span class="profile-follow-count">59</span> followers
-                        </p>
-                    </div>
-                </div>
-
-                <div class="profile-avatar-wrapper">
-                    <div class="profile-avatar"></div>
-                </div>
-            </div>
-
-            <div class="profile-actions-row">
-                <button class="profile-edit-btn">Modifier le profil</button>
-                <div class="profile-links">
-                    <span class="material-symbols-rounded">link</span>
-                    <span class="material-symbols-rounded">photo_library</span>
-                    <span class="material-symbols-rounded">bar_chart_4_bars</span>
-                </div>
-            </div>
-
-            <div class="profile-tabs">
-                <button class="tab active">Threads</button>
-                <button class="tab">Réponses</button>
-                <button class="tab">Contenu multimédia</button>
-                <button class="tab">Republications</button>
-            </div>
+                    
         </section>
 
-        <!-- COMPOSER -->
+        <!-- COMPOSER SUR LE PROFIL -->
         <section class="card profile-thread-composer">
-            <div class="avatar">G</div>
+            <span class="material-symbols-rounded">person</span>
             <div class="composer-content">
-                <textarea placeholder="Quoi de neuf ?"></textarea>
+                <textarea placeholder="Quoi de neuf ?" id="new-post"></textarea>
                 <div class="composer-actions">
-                    <button>Publier</button>
+                    <button id="publish-btn">Publier</button>
                 </div>
+            </div>
             </div>
         </section>
 
-        <!-- POSTS -->
-        <section class="profile-thread-list">
-
+        <!-- THREADS DU PROFIL (sera rempli en JS) -->
+        <!--<section class="profile-thread-list">
+            
             <article class="post card">
                 <div class="post-header">
                     <div class="avatar">G</div>
                     <div class="post-info">
-                        <div class="post-user">@glodie_kta</div>
+                        <div class="post-user">@user_name</div>
                         <div class="post-time">16/12/2023 · Premier thread</div>
                     </div>
                 </div>
@@ -132,13 +106,20 @@
                         <span class="material-symbols-rounded">favorite</span>
                         <span>8</span>
                     </button>
-                    <button class="action-btn"><span class="material-symbols-rounded">chat_bubble</span>1</button>
-                    <button class="action-btn"><span class="material-symbols-rounded">repeat</span>1</button>
-                    <button class="action-btn"><span class="material-symbols-rounded">share</span></button>
+                    <button class="action-btn">
+                        <span class="material-symbols-rounded">chat_bubble</span>
+                        <span>1</span>
+                    </button>
+                    <button class="action-btn">
+                        <span class="material-symbols-rounded">repeat</span>
+                        <span>1</span>
+                    </button>
+                    <button class="action-btn">
+                        <span class="material-symbols-rounded">share</span>
+                    </button>
                 </div>
             </article>
-
-        </section>
+        </section>-->
 
     </main>
 </div>

@@ -2,14 +2,18 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Trendify</title>
+    <title>Trendify – Accueil</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Icônes Google Fonts -->
+    <!-- Icônes Google -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
 
-    <!-- Ton CSS -->
+    <!-- CSS principal -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Scripts (pour plus tard : auth, feed) -->
+    <!-- <script src="auth.js" defer></script>
+    <script src="feed.js" defer></script> -->
 </head>
 <body>
 
@@ -17,50 +21,50 @@
 <header class="topbar">
     <div class="logo-text">Trendify</div>
 
-    <!-- BOUTON SE CONNECTER -->
+    <!-- Bouton Se connecter (on pourra le cacher si user connecté) -->
     <a href="login.html" class="login-btn">Se connecter</a>
 </header>
 
-
 <div class="app">
 
-    <!-- SIDEBAR AVEC ICONES GOOGLE FONTS -->
+    <!-- SIDEBAR -->
     <aside class="sidebar">
-    <nav class="nav-icons">
+        <nav class="nav-icons">
+            <!-- Accueil = actif sur cette page -->
+            <a href="index.html" class="icon-btn active" title="Accueil">
+                <span class="material-symbols-rounded">home</span>
+            </a>
 
-        <a href="index.html" class="icon-btn" title="Accueil">
-            <span class="material-symbols-rounded">home</span>
-        </a>
+            <button class="icon-btn" title="Recherche">
+                <span class="material-symbols-rounded">search</span>
+            </button>
 
-        <button class="icon-btn" title="Recherche">
-            <span class="material-symbols-rounded">search</span>
-        </button>
+            <button class="icon-btn" title="Nouveau post">
+                <span class="material-symbols-rounded">add</span>
+            </button>
 
-        <button class="icon-btn" title="Nouveau">
-            <span class="material-symbols-rounded">add</span>
-        </button>
+            <button class="icon-btn" title="Likes">
+                <span class="material-symbols-rounded">favorite</span>
+            </button>
 
-        <button class="icon-btn" title="Likes">
-            <span class="material-symbols-rounded">favorite</span>
-        </button>
-
-        <button class="icon-btn active" title="Profil">
-            <span class="material-symbols-rounded">person</span>
-        </button>
-
-    </nav>
-</aside>
-
+            <!-- Profil = lien simple, pas actif ici -->
+            <a href="profil.html" class="icon-btn" title="Profil">
+                <span class="material-symbols-rounded">person</span>
+            </a>
+        </nav>
+    </aside>
 
     <!-- FEED CENTRAL -->
     <main class="feed">
+        <!-- Titre centré -->
         <header class="feed-header">
-            <h1>Pour vous</h1> 
+            <h1>Pour vous</h1>
         </header>
 
-        <!-- COMPOSER UN POST -->
+        <!-- COMPOSER UN NOUVEAU POST -->
         <section class="composer card">
-            <div class="avatar">G</div>
+            <div></div>
+            <!--<span class="material-symbols-rounded">person</span>-->
             <div class="composer-content">
                 <textarea placeholder="Quoi de neuf ?" id="new-post"></textarea>
                 <div class="composer-actions">
@@ -69,12 +73,12 @@
             </div>
         </section>
 
-        <!-- POSTS -->
-        <section class="posts">
-
+        <!-- LISTE DES POSTS (remplie plus tard en JS) -->
+        <!-- <section class="posts">
+            Exemple statique (tu peux le garder ou le supprimer quand tu feras le JS) 
             <article class="post card">
                 <div class="post-header">
-                    <div class="avatar">P</div>
+                    <span class="material-symbols-rounded">person</span>
                     <div class="post-info">
                         <div class="post-user">@poisonmbutu</div>
                         <div class="post-time">Il y a 1 h</div>
@@ -90,46 +94,18 @@
                 <div class="post-footer">
                     <button class="action-btn like-btn">
                         <span class="material-symbols-rounded">favorite</span>
-                        <span>616</span>
+                        <span>0</span>
                     </button>
                     <button class="action-btn">
                         <span class="material-symbols-rounded">chat_bubble</span>
-                        <span>96</span>
+                        <span>0</span>
                     </button>
                     <button class="action-btn">
                         <span class="material-symbols-rounded">repeat</span>
-                        <span>4</span>
+                        <span>0</span>
                     </button>
-                </div>
-            </article>
-
-            <article class="post card">
-                <div class="post-header">
-                    <div class="avatar">D</div>
-                    <div class="post-info">
-                        <div class="post-user">@dylan</div>
-                        <div class="post-time">Il y a 46 min</div>
-                    </div>
-                </div>
-                <div class="post-body">
-                    <p>Just checking to make sure tu poursuis toujours tes objectifs 💪</p>
-                </div>
-                <div class="post-footer">
-                    <button class="action-btn like-btn">
-                        <span class="material-symbols-rounded">favorite</span>
-                        <span>1.1k</span>
-                    </button>
-                    <button class="action-btn">
-                        <span class="material-symbols-rounded">chat_bubble</span>
-                        <span>43</span>
-                    </button>
-                    <button class="action-btn">
-                        <span class="material-symbols-rounded">repeat</span>
-                        <span>9</span>
-                    </button>
-                </div>
-            </article>
-
+                </div> 
+            </article> -->
         </section>
     </main>
 

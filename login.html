@@ -5,11 +5,14 @@
     <title>Trendify – Connexion</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Icônes Google (optionnel, pour les champs) -->
+    <!-- Icônes Google -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
 
     <!-- CSS -->
     <link rel="stylesheet" href="login_style.css">
+
+    <!-- JS -->
+    <script src="login_form.js" defer></script>
 </head>
 <body>
 
@@ -26,13 +29,16 @@
         <h1>Connexion</h1>
         <p class="auth-subtitle">Ravi de te revoir. Connecte-toi pour continuer.</p>
 
-        <form class="auth-form" autocomplete="off">
+        <!-- Message d'erreur global -->
+        <p id="login-error-message" class="error-message"></p>
+
+        <form class="auth-form" id="loginForm" autocomplete="off" novalidate>
             <!-- Email -->
             <div class="field">
                 <label for="email">Adresse e-mail</label>
                 <div class="field-input">
                     <span class="material-symbols-rounded">mail</span>
-                    <input type="email" id="email" placeholder="tonmail@example.com" required>
+                    <input type="email" id="email" placeholder="tonmail@example.com">
                 </div>
             </div>
 
@@ -41,16 +47,12 @@
                 <label for="password">Mot de passe</label>
                 <div class="field-input">
                     <span class="material-symbols-rounded">lock</span>
-                    <input type="password" id="password" placeholder="••••••••" required>
+                    <input type="password" id="password" placeholder="••••••••">
                 </div>
             </div>
 
-           
-
             <!-- Bouton de connexion -->
             <button type="submit" class="auth-btn">Se connecter</button>
-
-           
 
             <!-- Lien inscription -->
             <p class="auth-footer-text">

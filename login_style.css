@@ -79,12 +79,14 @@ body {
 .auth-card h1 {
     font-size: 22px;
     margin-bottom: 4px;
+    text-align: center;
 }
 
 .auth-subtitle {
     font-size: 14px;
     color: var(--text-muted);
     margin-bottom: 18px;
+    text-align: center;
 }
 
 /* FORMULAIRE */
@@ -276,4 +278,16 @@ body {
     .logo-text {
         font-size: 22px;
     }
+}
+
+.field-input.incorrect {
+    border-color: #ff4b6e !important;
+    box-shadow: 0 0 0 1px rgba(255, 75, 110, 0.6);
+}
+
+.error-message {
+    color: #ff4b6e;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 14px;
 }
