@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Trendify – Inscription</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Icônes Google -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
+
+    <!-- CSS spécifique inscription -->
+    <link rel="stylesheet" href="signup_style.css">
+    <script src="signup_form.js" defer></script>
+</head>
+<body>
+
+<div class="auth-page">
+
+    <!-- Header -->
+    <header class="auth-header">
+        <div class="logo-mark">T</div>
+        <div class="logo-text">Trendify</div>
+    </header>
+
+    <!-- Carte d'inscription -->
+    <main class="auth-card">
+        <h1>Créer un compte</h1>
+        <p id="error-message" class="error-message"></p>
+
+        <!-- 🔥 FORMULAIRE AVEC ID -->
+        <form class="auth-form" id="signupForm"  novalidate>
+
+            <!-- Nom complet -->
+            <div class="field">
+                <label for="fullname">Nom complet</label>
+                <div class="field-input">
+                    <span class="material-symbols-rounded">person</span>
+                    <input type="text" id="fullname" placeholder="your_name" required>
+                </div>
+            </div>
+
+            <!-- Nom d'utilisateur -->
+            <div class="field">
+                <label for="username">Nom d’utilisateur</label>
+                <div class="field-input">
+                    <span class="material-symbols-rounded">alternate_email</span>
+                    <input type="text" id="username" placeholder="user" required>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="field">
+                <label for="email">Adresse e-mail</label>
+                <div class="field-input">
+                    <span class="material-symbols-rounded">mail</span>
+                    <input type="email" id="email" placeholder="yourmail@example.com" required>
+                </div>
+            </div>
+
+            <!-- Mot de passe -->
+            <div class="field">
+                <label for="password">Mot de passe</label>
+                <div class="field-input">
+                    <span class="material-symbols-rounded">lock</span>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+            </div>
+
+            <!-- Confirmation mot de passe -->
+            <div class="field">
+                <label for="password2">Confirmer le mot de passe</label>
+                <div class="field-input">
+                    <span class="material-symbols-rounded">lock</span>
+                    <input type="password" id="password2" placeholder="••••••••" required>
+                </div>
+            </div>
+
+            <!-- Bouton créer un compte -->
+            <button type="submit" class="auth-btn" id="signupBtn">Créer un compte</button>
+
+            
+            <!-- Lien vers Connexion -->
+            <p class="auth-footer-text">
+                Déjà un compte ?
+                <a href="login.html">Se connecter</a>
+            </p>
+        </form>
+    </main>
+
+</div>
+
+</body>
+</html>
