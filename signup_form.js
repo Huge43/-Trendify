@@ -6,9 +6,7 @@ const passwordInput = document.getElementById('password');
 const password2Input = document.getElementById('password2');
 const error_message = document.getElementById('error-message');
 
-// Soumission du formulaire
-form.addEventListener('submit', (e) => {
-    // On bloque TOUJOURS le submit HTML
+form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     clearErrors();
@@ -23,13 +21,41 @@ form.addEventListener('submit', (e) => {
 
     if (errors.length > 0) {
         error_message.innerText = errors.join(' ');
-    } else {
-        // ✅ AUCUNE ERREUR → REDIRECTION
-        window.location.href = "index.html"; // adapte le chemin si besoin
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API_URL}/api/auth/signup`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                fullname: fullnameInput.value.trim(),
+                username: usernameInput.value.trim(),
+                email: emailInput.value.trim(),
+                password: passwordInput.value.trim()
+            })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            error_message.innerText = data.message || "Erreur lors de l'inscription.";
+            return;
+        }
+
+        // TOKEN CENTRALISÉ
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("currentUser", JSON.stringify(data.user));
+
+        // Redirection
+        window.location.href = "index.html";
+
+    } catch (err) {
+        console.error(err);
+        error_message.innerText = "Erreur serveur. Réessaie plus tard.";
     }
 });
 
-// Validation
 function validateSignupForm(fullname, username, email, password, password2) {
     let errors = [];
 
@@ -39,57 +65,48 @@ function validateSignupForm(fullname, username, email, password, password2) {
     const passwordValue = password.value.trim();
     const password2Value = password2.value.trim();
 
-    // NOM COMPLET
-    if (fullnameValue === "") {
+    if (!fullnameValue) {
         errors.push("Vous devez entrer votre nom complet.");
         markIncorrect(fullname);
     }
 
-    // USERNAME
-    if (usernameValue === "") {
-        errors.push(" Vous devez entrer un nom d'utilisateur.");
+    if (!usernameValue) {
+        errors.push("Vous devez entrer un nom d'utilisateur.");
         markIncorrect(username);
     }
 
-    // EMAIL OBLIGATOIRE
-    if (emailValue === "") {
-        errors.push(" Vous devez entrer une adresse e-mail.");
+    if (!emailValue) {
+        errors.push("Vous devez entrer une adresse e-mail.");
         markIncorrect(email);
     }
 
-    // EMAIL DOIT CONTENIR @
-    if (emailValue !== "" && !emailValue.includes('@')) {
-        errors.push(" L’adresse e-mail doit contenir '@'.");
+    if (emailValue && !emailValue.includes('@')) {
+        errors.push("L’adresse e-mail doit contenir '@'.");
         markIncorrect(email);
     }
 
-    // MOT DE PASSE OBLIGATOIRE
-    if (passwordValue === "") {
-        errors.push(" Vous devez entrer un mot de passe.");
+    if (!passwordValue) {
+        errors.push("Vous devez entrer un mot de passe.");
         markIncorrect(password);
     }
 
-    // MOT DE PASSE LONGUEUR MINIMUM
-    if (passwordValue !== "" && passwordValue.length < 8) {
-        errors.push(" Le mot de passe doit avoir au moins 8 caractères.");
+    if (passwordValue.length < 8) {
+        errors.push("Le mot de passe doit avoir au moins 8 caractères.");
         markIncorrect(password);
     }
 
-    // MOT DE PASSE DOIT CONTENIR AU MOINS UN CHIFFRE
-    if (passwordValue !== "" && !/\d/.test(passwordValue)) {
-        errors.push(" Le mot de passe doit contenir au moins un chiffre.");
+    if (!/\d/.test(passwordValue)) {
+        errors.push("Le mot de passe doit contenir au moins un chiffre.");
         markIncorrect(password);
     }
 
-    // CONFIRMATION
-    if (password2Value === "") {
-        errors.push(" Vous devez confirmer le mot de passe.");
+    if (!password2Value) {
+        errors.push("Vous devez confirmer le mot de passe.");
         markIncorrect(password2);
     }
 
-    // MOTS DE PASSE IDENTIQUES
-    if (passwordValue !== "" && password2Value !== "" && passwordValue !== password2Value) {
-        errors.push(" Les mots de passe ne sont pas identiques.");
+    if (passwordValue !== password2Value) {
+        errors.push("Les mots de passe ne sont pas identiques.");
         markIncorrect(password);
         markIncorrect(password2);
     }
@@ -101,22 +118,16 @@ function markIncorrect(input) {
     input.parentElement.classList.add('incorrect');
 }
 
-// enlever les erreurs quand l'utilisateur retape
 const allInputs = [fullnameInput, usernameInput, emailInput, passwordInput, password2Input];
 
 allInputs.forEach(input => {
     input.addEventListener('input', () => {
-        if (input.parentElement.classList.contains('incorrect')) {
-            input.parentElement.classList.remove('incorrect');
-        }
+        input.parentElement.classList.remove('incorrect');
         error_message.innerText = '';
     });
 });
 
-// Nettoyer les erreurs
 function clearErrors() {
-    document.querySelectorAll('.incorrect').forEach(el => {
-        el.classList.remove('incorrect');
-    });
+    document.querySelectorAll('.incorrect').forEach(el => el.classList.remove('incorrect'));
     error_message.innerText = '';
 }

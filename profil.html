@@ -21,11 +21,16 @@
 <body>
 
 <!-- TOP BAR -->
+
 <header class="topbar">
     <div class="logo-text">Trendify</div>
-    <!-- On pourra remplacer ce bouton par le username + logout quand on aura auth.js -->
-    <a href="login.html" class="login-btn">Se connecter</a>
+
+    <div class="topbar-right">
+        <span id="topbar-username"></span>
+        <button id="logoutBtn" class="login-btn">Se déconnecter</button>
+    </div>
 </header>
+
 
 <div class="app">
 
@@ -123,6 +128,10 @@
 
     </main>
 </div>
+<script src="config.js"></script>
+<script src="feed.js" defer></script>
+<script src="auth.js" defer></script>
+
 
 </body>
 </html>

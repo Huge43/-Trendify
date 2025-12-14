@@ -287,3 +287,15 @@ body {
     border-color: #ff4b6e !important;
     box-shadow: 0 0 8px rgba(255, 75, 110, 0.6);
 }
+
+.topbar-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#topbar-username {
+    font-size: 14px;
+    color: #e5e7eb;
+}

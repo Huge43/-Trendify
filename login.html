@@ -11,29 +11,29 @@
     <!-- CSS -->
     <link rel="stylesheet" href="login_style.css">
 
+    <!-- CONFIG (AVANT TOUT) -->
+    <script src="config.js"></script>
+
     <!-- JS -->
-    <script src="login_form.js" defer></script>
+    
 </head>
 <body>
 
 <div class="auth-page">
 
-    <!-- Logo + nom -->
     <header class="auth-header">
         <div class="logo-mark">T</div>
         <div class="logo-text">Trendify</div>
     </header>
 
-    <!-- Carte de connexion -->
     <main class="auth-card">
         <h1>Connexion</h1>
         <p class="auth-subtitle">Ravi de te revoir. Connecte-toi pour continuer.</p>
 
-        <!-- Message d'erreur global -->
         <p id="login-error-message" class="error-message"></p>
 
         <form class="auth-form" id="loginForm" autocomplete="off" novalidate>
-            <!-- Email -->
+
             <div class="field">
                 <label for="email">Adresse e-mail</label>
                 <div class="field-input">
@@ -42,7 +42,6 @@
                 </div>
             </div>
 
-            <!-- Mot de passe -->
             <div class="field">
                 <label for="password">Mot de passe</label>
                 <div class="field-input">
@@ -51,10 +50,8 @@
                 </div>
             </div>
 
-            <!-- Bouton de connexion -->
             <button type="submit" class="auth-btn">Se connecter</button>
 
-            <!-- Lien inscription -->
             <p class="auth-footer-text">
                 Pas encore de compte ?
                 <a href="signup.html">Créer un compte</a>
@@ -64,5 +61,7 @@
 
 </div>
 
+    <script src="login_form.js" defer></script>
+    <script src="auth.js" defer></script>
 </body>
 </html>

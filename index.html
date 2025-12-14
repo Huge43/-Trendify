@@ -11,19 +11,20 @@
     <!-- CSS principal -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Scripts (pour plus tard : auth, feed) -->
-    <!-- <script src="auth.js" defer></script>
-    <script src="feed.js" defer></script> -->
 </head>
 <body>
 
 <!-- TOP BAR -->
+
 <header class="topbar">
     <div class="logo-text">Trendify</div>
 
-    <!-- Bouton Se connecter (on pourra le cacher si user connecté) -->
-    <a href="login.html" class="login-btn">Se connecter</a>
+    <div class="topbar-right">
+        <span id="topbar-username"></span>
+        <button id="logoutBtn" class="login-btn">Se déconnecter</button>
+    </div>
 </header>
+
 
 <div class="app">
 
@@ -35,7 +36,7 @@
                 <span class="material-symbols-rounded">home</span>
             </a>
 
-            <button class="icon-btn" title="Recherche">
+            <button class="icon-btn" title="Recherche" id="searchBtn">
                 <span class="material-symbols-rounded">search</span>
             </button>
 
@@ -54,8 +55,27 @@
         </nav>
     </aside>
 
+    <div class="search-box card" id="searchBox" style="display: none;">
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Rechercher (sport, nature, motivation...)"
+    >
+    </div>
+
+
     <!-- FEED CENTRAL -->
     <main class="feed">
+
+        <!-- BARRE DE RECHERCHE -->
+    <div class="search-box card" id="searchBox" style="display: none;">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Rechercher (sport, nature, motivation...)"
+        >
+    </div>
+
         <!-- Titre centré -->
         <header class="feed-header">
             <h1>Pour vous</h1>
@@ -73,43 +93,18 @@
             </div>
         </section>
 
-        <!-- LISTE DES POSTS (remplie plus tard en JS) -->
-        <!-- <section class="posts">
-            Exemple statique (tu peux le garder ou le supprimer quand tu feras le JS) 
-            <article class="post card">
-                <div class="post-header">
-                    <span class="material-symbols-rounded">person</span>
-                    <div class="post-info">
-                        <div class="post-user">@poisonmbutu</div>
-                        <div class="post-time">Il y a 1 h</div>
-                    </div>
-                </div>
-                <div class="post-body">
-                    <p>MARIAGE NETI NA FILM 🎥🔥</p>
-                    <div class="post-images">
-                        <div class="img-placeholder">Photo 1</div>
-                        <div class="img-placeholder">Photo 2</div>
-                    </div>
-                </div>
-                <div class="post-footer">
-                    <button class="action-btn like-btn">
-                        <span class="material-symbols-rounded">favorite</span>
-                        <span>0</span>
-                    </button>
-                    <button class="action-btn">
-                        <span class="material-symbols-rounded">chat_bubble</span>
-                        <span>0</span>
-                    </button>
-                    <button class="action-btn">
-                        <span class="material-symbols-rounded">repeat</span>
-                        <span>0</span>
-                    </button>
-                </div> 
-            </article> -->
         </section>
+
+        <!-- FEED -->
+        <div id="feed-container"></div>
     </main>
 
 </div>
+<script src="config.js"></script>
+<script src="auth.js" defer></script>
+<script src="feed.js" defer></script>
+
+
 
 </body>
 </html>

@@ -7,50 +7,23 @@
 
 body {
     font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
-    background: #050509; /* fond sombre global */
+    background: #050509;
     color: #ffffff;
 }
 
-/* TOP BAR (logo Trendify) */
+/* TOP BAR */
 .topbar {
     width: 100%;
+    height: 70px;
     padding: 16px 22px;
     background: #050509;
     border-bottom: 1px solid #1a1a1d;
     position: sticky;
     top: 0;
     z-index: 20;
-    height: 70px;               /* utilisé pour la sidebar */
     display: flex;
     align-items: center;
 }
-
-/* BOUTON SE CONNECTER DANS LA TOPBAR */
-.login-btn {
-    margin-left: auto;
-    padding: 8px 18px;
-    border-radius: 999px;
-    background: linear-gradient(135deg, #ff4b6e, #ffb347);
-    color: #000;
-    font-weight: 600;
-    font-size: 14px;
-    text-decoration: none;
-    box-shadow:
-        0 4px 14px rgba(255, 75, 110, 0.4),
-        0 0 0 1px rgba(255, 255, 255, 0.15);
-    transition: 0.2s ease;
-}
-
-.login-btn:hover {
-    transform: translateY(-1px);
-    opacity: 0.95;
-}
-
-.login-btn:active {
-    transform: translateY(0);
-    opacity: 0.85;
-}
-
 
 .logo-text {
     font-size: 24px;
@@ -61,23 +34,43 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-/* LAYOUT GLOBAL */
+.topbar-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.login-btn {
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ff4b6e, #ffb347);
+    color: #000;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.login-btn:hover {
+    opacity: 0.9;
+}
+
+/* LAYOUT */
 .app {
     display: flex;
     padding: 24px;
     gap: 40px;
 }
 
-/* SIDEBAR GAUCHE – ICÔNES DE THREADS */
+/* SIDEBAR */
 .sidebar {
     width: 70px;
-    height: calc(100vh - 70px); /* toute la hauteur sous la topbar */
+    height: calc(100vh - 70px);
     position: sticky;
-    top: 70px;                  /* commence juste sous la topbar */
+    top: 70px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;    /* centre verticalement les icônes */
-    align-items: center;
+    justify-content: center;
 }
 
 .nav-icons {
@@ -86,54 +79,32 @@ body {
     gap: 22px;
 }
 
-/* MATÉRIEL ICONS (GOOGLE FONTS) */
-.material-symbols-rounded {
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24;
-    font-size: 26px;
-    line-height: 1;
-}
-
-/* BOUTONS ICÔNES */
 .icon-btn {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    border: none;
     background: transparent;
+    border: none;
     cursor: pointer;
     color: #9ca3af;
-    transition: 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-decoration: none; 
-    color: inherit;
+    transition: 0.2s;
+    text-decoration: none;
 }
 
 .icon-btn:hover {
     background: #18181f;
-    color: #ffffff;
+    color: #fff;
 }
 
 .icon-btn.active {
-    background: #ffffff;
-    color: #000000;
+    background: #fff;
+    color: #000;
 }
 
-/* Icône remplie pour l'élément actif */
-.icon-btn.active .material-symbols-rounded {
-    font-variation-settings:
-        'FILL' 1,
-        'wght' 500,
-        'GRAD' 0,
-        'opsz' 24;
-}
-
-/* FEED CENTRAL */
+/* FEED */
 .feed {
     flex: 1;
     max-width: 620px;
@@ -144,19 +115,19 @@ body {
 }
 
 .feed-header h1 {
+    text-align: center;
     font-size: 22px;
     font-weight: 700;
-    color: #f9fafb;
-    text-align: center;
 }
 
-/* CARTES GÉNÉRIQUES */
+/* CARD */
 .card {
     background: #11121a;
     border-radius: 16px;
     padding: 16px;
     border: 1px solid #1e1e25;
     box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    overflow: hidden; /* 🔑 FIX IMAGE */
 }
 
 /* COMPOSER */
@@ -166,38 +137,28 @@ body {
 }
 
 .avatar {
-    width: 44px;
-    height: 44px;
-    border-radius: 999px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     background: #1f2933;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 700;
-    font-size: 16px;
-    color: #e5e7eb;
+    font-weight: bold;
 }
 
 .composer-content {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
 }
 
 .composer textarea {
     width: 100%;
     background: transparent;
     border: none;
-    resize: none;
     outline: none;
-    padding-top: 4px;
-    color: black;
+    resize: none;
+    color: #fff;
     font-size: 15px;
-}
-
-.composer textarea::placeholder {
-    color: #6b7280;
 }
 
 .composer-actions {
@@ -212,115 +173,137 @@ body {
     border-radius: 999px;
     border: none;
     cursor: pointer;
-    font-size: 14px;
     font-weight: 600;
 }
 
-.composer-actions button:hover {
-    opacity: 0.9;
-}
-
-/* LISTE DE POSTS */
-.posts {
+/* POST */
+.post {
     display: flex;
     flex-direction: column;
     gap: 12px;
 }
 
-/* ENTÊTE DU POST */
 .post-header {
     display: flex;
+    align-items: center;
     gap: 12px;
 }
 
-.post-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.post-user {
-    font-weight: 600;
-    font-size: 14px;
-    color: #f9fafb;
-}
-
-.post-time {
-    font-size: 12px;
-    color: #9ca3af;
-}
-
-/* CORPS DU POST */
-.post-body {
-    margin-top: 10px;
-    font-size: 15px;
-    color: #e5e7eb;
-}
-
-/* IMAGES DU POST (placeholder pour l’instant) */
-.post-images {
-    margin-top: 10px;
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 6px;
-}
-
-.img-placeholder {
-    height: 120px;
-    background: #1f2933;
+.post-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
     border-radius: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #9ca3af;
-    font-size: 13px;
+    object-fit: cover;
 }
 
-/* PIED DU POST */
+/* FOOTER */
 .post-footer {
     display: flex;
-    gap: 18px;
-    margin-top: 12px;
+    gap: 16px;
+    align-items: center;
 }
 
 .action-btn {
-    background: transparent;
+    background: none;
     border: none;
     color: #9ca3af;
     cursor: pointer;
-    font-size: 14px;
     display: flex;
-    gap: 4px;
     align-items: center;
+    gap: 6px;
     transition: 0.2s;
 }
 
 .action-btn:hover {
-    color: #ffffff;
+    color: #fff;
 }
 
-/* Les icônes dans les boutons de post */
-.post-footer .material-symbols-rounded {
-    font-size: 20px;
-}
-
-/* Like "actif" (si tu ajoutes la classe liked en JS) */
-.like-btn.liked .material-symbols-rounded,
-.like-btn.liked span:last-child {
+.like-btn.liked {
     color: #ff4b6e;
+}
+
+/* COMMENTS */
+.comments {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.comment {
+    font-size: 14px;
+    color: #e5e7eb;
+}
+
+.comment strong {
+    color: #ffb347;
+}
+
+
+.comment-input {
+    width: 100%;
+    margin-top: 6px;
+    padding: 6px;
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+    border-radius: 6px;
 }
 
 /* RESPONSIVE */
 @media (max-width: 720px) {
-    .app {
-        padding: 16px;
-        gap: 16px;
-    }
-
     .sidebar {
         display: none;
+    }
+
+    .app {
+        padding: 16px;
     }
 
     .feed {
         max-width: 100%;
     }
 }
+
+/* SEARCH BOX */
+.search-box {
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto 16px auto;
+    padding: 12px;
+}
+
+.search-box input {
+    width: 100%;
+    height: 42px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid #2a2a35;
+    background: #0f0f15;
+    color: #ffffff;
+    font-size: 15px;
+    outline: none;
+}
+
+.search-box input::placeholder {
+    color: #9ca3af;
+}
+
+.search-box {
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
