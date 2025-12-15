@@ -24,6 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const photos = await res.json();
             FEED.innerHTML = "";
 
+            const likesBtn = document.getElementById("likesBtn");
+
+likesBtn.addEventListener("click", () => {
+    alert("Fonctionnalité : affichage des posts aimés (stockés côté serveur)");
+});
+
 
             
 
