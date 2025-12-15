@@ -1,5 +1,5 @@
 const db = require('../config/db');
-const fetch = globalThis.fetch;
+const fetch = require('node-fetch');
 
 /* FEED LOCAL */
 exports.getPhotos = (req, res) => {
@@ -55,13 +55,18 @@ exports.addPhoto = (req, res) => {
 /* UNSPLASH */
 exports.getUnsplashPhotos = async (req, res) => {
     const query = req.query.q || 'trending';
+    const accessKey = process.env.UNSPLASH_ACCESS_KEY;
+
+    if (!accessKey) {
+        return res.status(500).json({ message: 'Clé Unsplash manquante' });
+    }
 
     try {
         const response = await fetch(
             `https://api.unsplash.com/search/photos?query=${query}&per_page=10`,
             {
                 headers: {
-                    Authorization: `Client-ID ${process.env.UNSPLASH_ACCESS_KEY}`
+                    Authorization: `Client-ID ${accessKey}`
                 }
             }
         );
