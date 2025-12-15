@@ -37,7 +37,7 @@ async function loadUnsplashFeed(query = "trending") {
     FEED.innerHTML = "<p>Chargement…</p>";
 
     try {
-        const res = await fetch(`${API_URL}/api/photos/unsplash?q=${query}`);
+        const res = await fetch(`${API_URL}/photos/unsplash?q=trending`);
         if (!res.ok) throw new Error("Erreur Unsplash");
 
         const photos = await res.json();
@@ -79,14 +79,14 @@ function createPost(photo) {
     let liked = false;
 
     // Charger likes
-    fetch(`${API_URL}/api/likes/${photo.externalId}/count`)
+    fetch(`${API_URL}/likes/${photo.externalId}/count`)
         .then(res => res.json())
         .then(data => likeCountSpan.textContent = data.likeCount);
 
     likeBtn.addEventListener("click", async (e) => {
         e.preventDefault();
 
-        const res = await fetch(`${API_URL}/api/likes/${photo.externalId}`, {
+        const res = await fetch(`${API_URL}/likes/${photo.externalId}`, {
             method: liked ? "DELETE" : "POST",
             headers: { Authorization: `Bearer ${token}` }
         });
@@ -99,7 +99,7 @@ function createPost(photo) {
 
     commentInput.addEventListener("keydown", async (e) => {
         if (e.key === "Enter" && commentInput.value.trim()) {
-            await fetch(`${API_URL}/api/comments/${photo.externalId}`, {
+            await fetch(`${API_URL}/comments/${photo.externalId}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -123,7 +123,7 @@ function createPost(photo) {
 
 async function loadComments(externalId, container) {
     try {
-        const res = await fetch(`${API_URL}/api/comments/${externalId}`);
+        const res = await fetch(`${API_URL}/comments/${externalId}`);
         if (!res.ok) throw new Error("Erreur commentaires");
 
         const comments = await res.json();
