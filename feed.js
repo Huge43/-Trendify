@@ -22,22 +22,19 @@ searchInput.addEventListener("input", () => {
     clearTimeout(searchTimeout);
 
     searchTimeout = setTimeout(() => {
-        if (query.length === 0) {
-            loadUnsplashFeed("trending");
-        } else {
-            loadUnsplashFeed(query);
-        }
+        loadUnsplashFeed(query || "trending");
     }, 400);
 });
 
 
 // LOAD FEED UNSPLASH
-
 async function loadUnsplashFeed(query = "trending") {
     FEED.innerHTML = "<p>Chargement…</p>";
 
     try {
-        const res = await fetch(`${API_URL}/photos/unsplash?q=trending`);
+        const res = await fetch(
+            `${API_URL}/photos/unsplash?q=${encodeURIComponent(query)}`
+        );
         if (!res.ok) throw new Error("Erreur Unsplash");
 
         const photos = await res.json();
@@ -52,7 +49,6 @@ async function loadUnsplashFeed(query = "trending") {
 
 
 // CREATE POST
-
 function createPost(photo) {
     const post = document.createElement("article");
     post.className = "post card";
@@ -66,7 +62,6 @@ function createPost(photo) {
             </button>
         </div>
 
-        
         <input class="comment-input" placeholder="Commenter…">
         <div class="comments"></div> 
     `;
@@ -83,8 +78,9 @@ function createPost(photo) {
         .then(res => res.json())
         .then(data => likeCountSpan.textContent = data.likeCount);
 
+    // LIKE
     likeBtn.addEventListener("click", async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // sécurité
 
         const res = await fetch(`${API_URL}/likes/${photo.externalId}`, {
             method: liked ? "DELETE" : "POST",
@@ -97,15 +93,18 @@ function createPost(photo) {
         likeBtn.classList.toggle("liked", liked);
     });
 
+    // COMMENTAIRE
     commentInput.addEventListener("keydown", async (e) => {
         if (e.key === "Enter" && commentInput.value.trim()) {
+            e.preventDefault(); 
+
             await fetch(`${API_URL}/comments/${photo.externalId}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`
                 },
-                body: JSON.stringify({ text: commentInput.value })
+                body: JSON.stringify({ text: commentInput.value.trim() })
             });
 
             commentInput.value = "";
@@ -118,9 +117,7 @@ function createPost(photo) {
 }
 
 
-
 // LOAD COMMENTS
-
 async function loadComments(externalId, container) {
     try {
         const res = await fetch(`${API_URL}/comments/${externalId}`);
@@ -142,5 +139,4 @@ async function loadComments(externalId, container) {
 
 
 // INIT
-
 loadUnsplashFeed();
