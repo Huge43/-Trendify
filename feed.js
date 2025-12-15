@@ -1,142 +1,72 @@
-const FEED = document.getElementById("feed-container");
-const searchBtn = document.getElementById("searchBtn");
-const searchBox = document.getElementById("searchBox");
-const searchInput = document.getElementById("searchInput");
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM chargé");
 
-searchBtn.addEventListener("click", () => {
-    if (searchBox.style.display === "none") {
-        searchBox.style.display = "block";
-        searchInput.focus();
-    } else {
-        searchBox.style.display = "none";
-        searchInput.value = "";
-        loadUnsplashFeed("trending");
-    }
-});
+    const FEED = document.getElementById("feed-container");
 
-let searchTimeout = null;
+    async function loadFeed() {
+        FEED.innerHTML = "<p>Chargement…</p>";
 
-searchInput.addEventListener("input", () => {
-    const query = searchInput.value.trim();
+        try {
+            const res = await fetch("https://picsum.photos/v2/list?limit=6");
+            const photos = await res.json();
+            FEED.innerHTML = "";
 
-    clearTimeout(searchTimeout);
-
-    searchTimeout = setTimeout(() => {
-        loadUnsplashFeed(query || "trending");
-    }, 400);
-});
-
-
-// LOAD FEED UNSPLASH
-async function loadUnsplashFeed(query = "trending") {
-    FEED.innerHTML = "<p>Chargement…</p>";
-
-    try {
-        const res = await fetch(
-            `${API_URL}/photos/unsplash?q=${encodeURIComponent(query)}`
-        );
-        if (!res.ok) throw new Error("Erreur Unsplash");
-
-        const photos = await res.json();
-        FEED.innerHTML = "";
-
-        photos.forEach(photo => createPost(photo));
-    } catch (err) {
-        console.error(err);
-        FEED.innerHTML = "<p>Impossible de charger le feed.</p>";
-    }
-}
-
-
-// CREATE POST
-function createPost(photo) {
+//Permettre de liker
+            photos.forEach(photo => {
     const post = document.createElement("article");
-    post.className = "post card";
+    post.className = "post";
 
     post.innerHTML = `
-        <img src="${photo.url}" class="post-image">
+        <img 
+            src="https://picsum.photos/id/${photo.id}/400/400" 
+            class="post-image"
+        >
 
-        <div class="post-footer">
-            <button type="button" class="action-btn like-btn">
-                ❤️ <span class="like-count">0</span>
-            </button>
+        <div class="post-actions">
+            <button class="like-btn">❤️ <span class="like-count">0</span></button>
         </div>
 
-        <input class="comment-input" placeholder="Commenter…">
-        <div class="comments"></div> 
+        <div class="post-comments">
+            <input 
+                type="text" 
+                class="comment-input" 
+                placeholder="Ajouter un commentaire…"
+            >
+            <div class="comments"></div>
+        </div>
     `;
-
+//Rendre le like fonctionnel
     const likeBtn = post.querySelector(".like-btn");
-    const likeCountSpan = post.querySelector(".like-count");
-    const commentInput = post.querySelector(".comment-input");
-    const commentsDiv = post.querySelector(".comments");
+const likeCount = post.querySelector(".like-count");
 
-    let liked = false;
+let liked = false;
 
-    // Charger likes
-    fetch(`${API_URL}/likes/${photo.externalId}/count`)
-        .then(res => res.json())
-        .then(data => likeCountSpan.textContent = data.likeCount);
+likeBtn.addEventListener("click", () => {
+    liked = !liked;
+    likeCount.textContent = liked ? 1 : 0;
+});
+//Rendre les commentaires fonctionnels
+const commentInput = post.querySelector(".comment-input");
+const commentsDiv = post.querySelector(".comments");
 
-    // LIKE
-    likeBtn.addEventListener("click", async (e) => {
-        e.preventDefault(); // sécurité
-
-        const res = await fetch(`${API_URL}/likes/${photo.externalId}`, {
-            method: liked ? "DELETE" : "POST",
-            headers: { Authorization: `Bearer ${token}` }
-        });
-
-        const data = await res.json();
-        liked = data.liked;
-        likeCountSpan.textContent = data.likeCount;
-        likeBtn.classList.toggle("liked", liked);
-    });
-
-    // COMMENTAIRE
-    commentInput.addEventListener("keydown", async (e) => {
-        if (e.key === "Enter" && commentInput.value.trim()) {
-            e.preventDefault(); 
-
-            await fetch(`${API_URL}/comments/${photo.externalId}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`
-                },
-                body: JSON.stringify({ text: commentInput.value.trim() })
-            });
-
-            commentInput.value = "";
-            loadComments(photo.externalId, commentsDiv);
-        }
-    });
-
-    loadComments(photo.externalId, commentsDiv);
-    FEED.appendChild(post);
-}
-
-
-// LOAD COMMENTS
-async function loadComments(externalId, container) {
-    try {
-        const res = await fetch(`${API_URL}/comments/${externalId}`);
-        if (!res.ok) throw new Error("Erreur commentaires");
-
-        const comments = await res.json();
-
-        container.innerHTML = comments
-            .map(c => `
-                <div class="comment">
-                    <strong>@${c.username}</strong> ${c.text}
-                </div>
-            `)
-            .join("");
-    } catch (err) {
-        console.error(err);
+commentInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && commentInput.value.trim()) {
+        const comment = document.createElement("div");
+        comment.textContent = commentInput.value;
+        commentsDiv.appendChild(comment);
+        commentInput.value = "";
     }
-}
+});
+
+    FEED.appendChild(post);
+});
+        } catch (e) {
+            console.error(e);
+            FEED.innerHTML = "Erreur chargement feed";
+        }
+    }
+
+    loadFeed();
+});
 
 
-// INIT
-loadUnsplashFeed();
