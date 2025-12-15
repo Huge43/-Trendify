@@ -1,3 +1,16 @@
+const searchBtn = document.getElementById("searchBtn");
+const searchBox = document.getElementById("searchBox");
+const searchInput = document.getElementById("searchInput");
+
+// Afficher et cacher la barre de recherche
+searchBtn.addEventListener("click", () => {
+    searchBox.style.display =
+        searchBox.style.display === "none" ? "block" : "none";
+    searchInput.focus();
+});
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
     console.log("DOM chargé");
 
@@ -10,6 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const res = await fetch("https://picsum.photos/v2/list?limit=6");
             const photos = await res.json();
             FEED.innerHTML = "";
+
+
+            
 
 //Permettre de liker
             photos.forEach(photo => {
@@ -45,6 +61,7 @@ likeBtn.addEventListener("click", () => {
     liked = !liked;
     likeCount.textContent = liked ? 1 : 0;
 });
+
 //Rendre les commentaires fonctionnels
 const commentInput = post.querySelector(".comment-input");
 const commentsDiv = post.querySelector(".comments");
