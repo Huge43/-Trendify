@@ -91,5 +91,3 @@ commentInput.addEventListener("keydown", (e) => {
 
     loadFeed();
 });
-
-
