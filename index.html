@@ -21,7 +21,7 @@
 
     <div class="topbar-right">
         <span id="topbar-username"></span>
-        <button id="logoutBtn" class="login-btn">Se déonnecter</button>
+        <button id="logoutBtn" class="login-btn">Se déconnecter</button>
     </div>
 </header>
 
@@ -30,30 +30,31 @@
 
     <!-- SIDEBAR -->
     <aside class="sidebar">
-        <nav class="nav-icons">
-            <!-- Accueil = actif sur cette page -->
-            <a href="index.html" class="icon-btn active" title="Accueil">
-                <span class="material-symbols-rounded">home</span>
-            </a>
+    <nav class="nav-icons">
 
-            <button class="icon-btn" title="Recherche" id="searchBtn">
-                <span class="material-symbols-rounded">search</span>
-            </button>
+        <a href="index.html" class="icon-btn active" title="Accueil">
+            <span class="material-symbols-rounded">home</span>
+        </a>
 
-            <button class="icon-btn" title="Nouveau post">
-                <span class="material-symbols-rounded">add</span>
-            </button>
+        <button class="icon-btn" title="Recherche" id="searchBtn">
+            <span class="material-symbols-rounded">search</span>
+        </button>
 
-            <button class="icon-btn" title="Likes">
-                <span class="material-symbols-rounded">favorite</span>
-            </button>
+        <button class="icon-btn" title="Nouveau post" id="addBtn">
+            <span class="material-symbols-rounded">add</span>
+        </button>
 
-            <!-- Profil = lien simple, pas actif ici -->
-            <a href="profil.html" class="icon-btn" title="Profil">
-                <span class="material-symbols-rounded">person</span>
-            </a>
-        </nav>
-    </aside>
+        <button class="icon-btn" title="Likes" id="likesBtn">
+            <span class="material-symbols-rounded">favorite</span>
+        </button>
+
+        <a href="profil.html" class="icon-btn" title="Profil">
+            <span class="material-symbols-rounded">person</span>
+        </a>
+
+    </nav>
+</aside>
+
 
     <div class="search-box card" id="searchBox" style="display: none;">
     <input
