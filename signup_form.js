@@ -131,3 +131,15 @@ function clearErrors() {
     document.querySelectorAll('.incorrect').forEach(el => el.classList.remove('incorrect'));
     error_message.innerText = '';
 }
+
+if (!res.ok) {
+    alert(result.message || "Erreur création compte");
+    return;
+}
+
+// 🔐 STOCKER LE TOKEN
+localStorage.setItem("token", result.token);
+localStorage.setItem("user", JSON.stringify(result.user));
+
+// 🔁 REDIRECTION
+window.location.href = "index.html";
